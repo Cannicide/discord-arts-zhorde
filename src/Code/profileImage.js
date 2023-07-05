@@ -451,7 +451,7 @@ async function genBadges(data, options) {
 }
 
 function genXpBar(options) {
-  const { currentXp, requiredXp, level, rank, barColor } = options.rankData;
+  const { currentXp, requiredXp, level, rank, barColor, levelColor } = options.rankData;
 
   if (isNaN(currentXp) || isNaN(requiredXp) || isNaN(level)) {
     throw new Error(
@@ -471,9 +471,9 @@ function genXpBar(options) {
   ctx.fill();
   ctx.globalAlpha = 1;
 
-  const rankString = !isNaN(rank) ? `#${isNumber(rank, 'rankData:rank')}` : '';
+  const rankString = !isNaN(rank) ? `Rank #${isNumber(rank, 'rankData:rank')}` : '';
   const lvlString = !isNaN(level)
-    ? `Lvl ${isNumber(level, 'rankData:level')}`
+    ? `Level ${isNumber(level, 'rankData:level')}`
     : '';
 
   ctx.font = '23px Helvetica';
@@ -484,7 +484,12 @@ function genXpBar(options) {
   ctx.font = '23px Helvetica';
   ctx.textAlign = 'right';
   ctx.fillStyle = '#dadada';
-  ctx.fillText(`${rankString}${rankString ? ' ' : ''}${lvlString}`, 674, 273);
+  ctx.fillText(`${rankString}`, 674 - ctx.measureText(`${lvlString}`).width - 10, 273);
+
+  ctx.font = '23px Helvetica';
+  ctx.textAlign = 'right';
+  ctx.fillStyle = levelColor ?? '#dadada';
+  ctx.fillText(`${lvlString}`, 674, 273);
 
   ctx.globalAlpha = alphaValue;
   ctx.fillStyle = '#000';
