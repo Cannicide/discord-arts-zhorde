@@ -37,7 +37,7 @@ interface ProfileOptions {
 interface DiscordCard {
     files: Buffer[];
     buffer(): Buffer;
-    reply(interaction: import("discord.js").CommandInteraction|import("discord.js").Message): void;
+    reply(message: import("discord.js").Message): void;
     followUp(interaction: import("discord.js").CommandInteraction): void;
 }
 

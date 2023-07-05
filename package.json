@@ -1,7 +1,7 @@
 {
   "name": "discord-arts-zhorde",
-  "version": "0.4.1",
-  "description": "A fork of discord-arts with extra customization.",
+  "version": "1.0.0",
+  "description": "A fork of discord-arts with lots of extra customization.",
   "main": "index.js",
   "types": "index.d.ts",
   "author": "iAsure",

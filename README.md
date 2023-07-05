@@ -3,9 +3,9 @@
   <img src='https://i.imgur.com/NBpsl5W.png' alt='Discord Arts Banner' />
   <p align='center'>
   <a href='https://www.npmjs.com/package/discord-arts'>
-    <img src='https://img.shields.io/npm/v/discord-arts?label=version&style=for-the-badge' alt='version' />
-    <img src='https://img.shields.io/bundlephobia/min/discord-arts?label=size&style=for-the-badge' alt='size' />
-    <img src='https://img.shields.io/npm/dt/discord-arts?style=for-the-badge' alt='downloads' />
+    <img src='https://img.shields.io/npm/v/discord-arts-zhorde?label=version&style=for-the-badge' alt='version' />
+    <img src='https://img.shields.io/bundlephobia/min/discord-arts-zhorde?label=size&style=for-the-badge' alt='size' />
+    <img src='https://img.shields.io/npm/dt/discord-arts-zhorde?style=for-the-badge' alt='downloads' />
   </a>
 </p>
 </div>
@@ -25,12 +25,26 @@ npm i discord-arts-zhorde@latest
 This package, `discord-arts-zhorde`, is a custom fork of the original `discord-arts` by iAsure.\
 This package adds more customizability and options, to be used by the official discord bot of the ZombieHorde (zhorde) Minecraft server.
 
+**Note: this package is not directly compatible with code made using the original `discord-arts`. Slight changes have been made to sending and configuring cards.**
+
 # ✨ Features
 
 + 🚀 Fast generation!
 + 🎨 Simple and beautiful design
 + 🎖️ Now easier to use than ever!
 + 💎 Beginner friendly
++ 🚫 Does not require Discord.js!
+
+# 🌟 Extra Features In `discord-arts-zhorde`
+
++ 🖌️ Customize level label color
++ 🥇 Automatically color rank label for 1st, 2nd, 3rd place
++ 🔠 Auto-abbreviate XP, level, rank numbers as large as 93 digits (9630 -> 9.6K)
++ 🔆 Brighten XP progress bar
++ 😎 Customize background brightness
++ 🫠 Increase background blur
++ 📅 Use custom date in date label
++ 📈 Send cards even easier in Discord.js!
 
 # 🖼️ Cards
 
@@ -38,7 +52,7 @@ This package adds more customizability and options, to be used by the official d
 
 *Generates the card of a user/bot, with its badges.*
 
-```js
+```ts
 profileImage(userId, {
   customTag?: string, // Text below the user
   customBadges?: string[], // Your own png badges (path and URL) (46x46)
@@ -59,17 +73,29 @@ profileImage(userId, {
     level: number, // Current user level
     rank?: number, // Position on the leaderboard
     barColor?: string, // HEX XP bar color
-  }
-})
+
+    // === Options added in discord-arts-zhorde: ===
+
+    levelColor?: string, // HEX color of LVL text
+    autoColorRank?: boolean, // Whether to color ranks as medal colors for 1st, 2nd, 3rd
+    brighterBar?: boolean, // Increases brightness of XP bar
+  },
+
+  // === Options added in discord-arts-zhorde: ===
+
+  moreBackgroundBlur?: boolean, // Triples blur of background image
+  backgroundBrightness?: number, // Set brightness of background from 0-200%
+  customDate?: Date, // Custom date to use instead of when user joined Discord
+});
 ```
 
-#### Returns: **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<**[Buffer](https://nodejs.org/api/buffer.html)**>**
+#### Returns: **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<**[DiscordCard](index.d.ts)**>**
 
 ***
 
-### 📃 Discord.js v14 Example
+### 📃 Discord.js v14 Interaction Example
 
-```javascript
+```js
 const { AttachmentBuilder } = require('discord.js');
 const { profileImage } = require('discord-arts');
 
@@ -81,42 +107,43 @@ const card = await profileImage(user.id, {
   ...imgOptions
 });
 
-// === discord-arts' default way to attach cards ===
-
-const attachment = new AttachmentBuilder(card.buffer(), { name: 'profile.png' });
-interaction.followUp({ files: [attachment] });
-
-// === OR, discord-arts-zhorde's simpler ways to attach cards ===
-
-// Directly:
+// discord-arts-zhorde allows you to directly attach cards:
 interaction.followUp(card);
+// Or card.followUp(interaction);
+```
 
-// DiscordCard#reply() method (obv cannot be used with deferReply, but can be used with interactions OR messages):
-card.reply(interaction);
+### 📃 Discord.js v14 Message Example
+```js
+// discord-arts-zhorde allows you to directly attach with messages, too:
+message.reply(card);
+// Or card.reply(message);
+```
 
-// DiscordCard#followUp method:
-card.followUp(interaction);
+### 📃 Directly Using Buffer
+```js
+// Need the buffer? Discord-arts-zhorde has got you covered:
+const buffer = card.buffer();
 
-// Directly as buffer:
-interaction.followUp({ files: [card.buffer()] });
-
+// And then use the buffer wherever you'd like, e.g:
+interaction.followUp({ files: [buffer] });
 ```
 
 ***
 
-### 🖼️Example Results 
+### 🖼️ Example Results 
 
 ## Default Card
 
 > ![Default](https://i.imgur.com/xV77f9g.png)
 >> ```javascript
->> profileImage('ID')
+>> profileImage('UserID')
 >> ```
 
 ***
 
 ## Rank Card
 
+### Original `discord-arts` Options
 > ![Default](https://i.imgur.com/gLA4M7k.png)
 >> ```javascript
 >> profileImage('UserID', {
@@ -131,6 +158,31 @@ interaction.followUp({ files: [card.buffer()] });
 >>     level: 20,
 >>     barColor: '0b7b95'
 >>   }
+>> });
+>> ```
+
+### Extended `discord-arts-zhorde` Options
+> ![Default](docs/newRank.jpg)
+>> ```javascript
+>> profileImage('UserID', {
+>>   borderColor: "#ff0000",
+>>   presenceStatus: 'offline',
+>>   badgesFrame: true,
+>>   rankData: {
+>>     currentXp: 4562,
+>>     requiredXp: 9302,
+>>     rank: 2100,
+>>     level: 200,
+>>     barColor: "#ff0000",
+>>     // === All of the following were added in discord-arts-zhorde: ===
+>>     levelColor: "#ff0000",
+>>     autoColorRank: true,
+>>     brighterBar: true
+>>   },
+>>   // === All of the following were added in discord-arts-zhorde: ===
+>>   moreBackgroundBlur: true,
+>>   backgroundBrightness: 70,
+>>   customDate: new Date(),
 >> });
 >> ```
 
@@ -171,7 +223,7 @@ interaction.followUp({ files: [card.buffer()] });
 ***
 
 > # ⭐ Credits
-> View Original github repository that this was forked from [here](https://github.com/iAsure/discord-arts)
+> View original github repository that this was forked from [here](https://github.com/iAsure/discord-arts)
 >
-> ### Created by [iAsure#0001](https://discord.com/users/339919990947971105)
-> ### Forked by Cannicide#2753
+> ### `discord-arts` created by [iAsure#0001](https://discord.com/users/339919990947971105)
+> ### `discord-arts-zhorde` forked and modified by Cannicide#2753
