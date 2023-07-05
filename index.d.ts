@@ -1,7 +1,7 @@
-type presenceStatus = 'online' | 'idle' | 'offline' | 'dnd' | 'invisible' | 'streaming' | 'phone'
-type borderAlign = 'horizontal' | 'vertical'
+type PresenceStatus = 'online' | 'idle' | 'offline' | 'dnd' | 'invisible' | 'streaming' | 'phone'
+type BorderAlign = 'horizontal' | 'vertical'
 
-interface rankOptions {
+interface RankOptions {
     currentXp: number;
     requiredXp: number;
     level: number;
@@ -9,7 +9,7 @@ interface rankOptions {
     barColor?: string;
 }
 
-interface profileOptions {
+interface ProfileOptions {
     customTag?: string;
     customBadges?: string[];
     customBackground?: string;
@@ -17,15 +17,22 @@ interface profileOptions {
     usernameColor?: string;
     tagColor?: string;
     borderColor?: string | string[];
-    borderAlign?: borderAlign;
+    borderAlign?: BorderAlign;
     badgesFrame?: boolean;
     removeBadges?: boolean;
     removeBorder?: boolean;
-    presenceStatus?: presenceStatus;
+    presenceStatus?: PresenceStatus;
     squareAvatar?: boolean;
-    rankData?: rankOptions;
+    rankData?: RankOptions;
+}
+
+interface DiscordCard {
+    files: Buffer[];
+    buffer(): Buffer;
+    reply(interaction: import("discord.js").CommandInteraction|import("discord.js").Message): void;
+    followUp(interaction: import("discord.js").CommandInteraction): void;
 }
 
 declare module 'discord-arts-zhorde' {
-    export function profileImage(user: string, options?: profileOptions): Promise<Buffer>;
+    export function profileImage(userId: string, options?: ProfileOptions): Promise<DiscordCard>;
 }

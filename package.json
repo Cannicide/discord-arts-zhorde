@@ -14,6 +14,9 @@
     "@napi-rs/canvas": "^0.1.41",
     "node-fetch": "^2.6.12"
   },
+  "scripts": {
+    "test": "node ./test.js"
+  },
   "keywords": [
     "discord",
     "canvas",
@@ -24,5 +27,9 @@
     "levels",
     "xp",
     "cannicide"
-  ]
+  ],
+  "devDependencies": {
+    "djs-vidar": "^1.0.0",
+    "dotenv": "^16.3.1"
+  }
 }

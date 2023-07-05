@@ -83,7 +83,15 @@ async function profileImage(user, options) {
   return canvas.toBuffer('image/png');
 }
 
-module.exports = profileImage;
+module.exports = async (userId, options) => {
+  const buffer = await profileImage(userId, options);
+  return {
+    files: [buffer],
+    buffer: () => buffer,
+    reply(interaction) { interaction.reply(this); },
+    followUp(interaction) { interaction.followUp(this); }
+  };
+};
 
 async function genBase(data, options) {
   const { bannerURL, avatarURL, defaultAvatarURL } = data;

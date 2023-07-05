@@ -76,13 +76,30 @@ const { profileImage } = require('discord-arts');
 await interaction.deferReply();
 const user = interaction.options.getUser('user-option');
 
-const buffer = await profileImage(user.id, {
+const card = await profileImage(user.id, {
   customTag: 'Admin',
   ...imgOptions
 });
 
-const attachment = new AttachmentBuilder(buffer, { name: 'profile.png' });
+// === discord-arts' default way to attach cards ===
+
+const attachment = new AttachmentBuilder(card.buffer(), { name: 'profile.png' });
 interaction.followUp({ files: [attachment] });
+
+// === OR, discord-arts-zhorde's simpler ways to attach cards ===
+
+// Directly:
+interaction.followUp(card);
+
+// DiscordCard#reply() method (obv cannot be used with deferReply, but can be used with interactions OR messages):
+card.reply(interaction);
+
+// DiscordCard#followUp method:
+card.followUp(interaction);
+
+// Directly as buffer:
+interaction.followUp({ files: [card.buffer()] });
+
 ```
 
 ***
