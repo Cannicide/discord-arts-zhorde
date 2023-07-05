@@ -481,7 +481,7 @@ function genXpBar(options) {
   ctx.fillStyle = '#dadada';
   ctx.fillText(`${currentXp} / ${requiredXp} XP`, 314, 273);
 
-  ctx.font = '23px Helvetica';
+  ctx.font = '23px Helvetica'; // TODO: allow gold, silver, bronze coloring based on rank
   ctx.textAlign = 'right';
   ctx.fillStyle = '#dadada';
   ctx.fillText(`${rankString}`, 674 - ctx.measureText(`${lvlString}`).width - 10, 273);

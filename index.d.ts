@@ -7,6 +7,7 @@ interface RankOptions {
     level: number;
     rank?: number;
     barColor?: string;
+    levelColor?: string;
 }
 
 interface ProfileOptions {
