@@ -29,7 +29,7 @@ This package adds more customizability and options, to be used by the official d
 
 + 🚀 Fast generation!
 + 🎨 Simple and beautiful design
-+ 🎖️ Easy to use
++ 🎖️ Now easier to use than ever!
 + 💎 Beginner friendly
 
 # 🖼️ Cards
@@ -170,12 +170,8 @@ interaction.followUp({ files: [card.buffer()] });
 
 ***
 
-> # 💥 Issues / Feedback
-> 
-> ### Original github repository that this was forked from [here](https://github.com/iAsure/discord-arts)
-
-
 > # ⭐ Credits
+> View Original github repository that this was forked from [here](https://github.com/iAsure/discord-arts)
 >
 > ### Created by [iAsure#0001](https://discord.com/users/339919990947971105)
 > ### Forked by Cannicide#2753

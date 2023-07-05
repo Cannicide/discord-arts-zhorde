@@ -1,5 +1,9 @@
+function capitalizeUsername(username) {
+  return username.slice(0, 1).toUpperCase() + username.slice(1);
+}
+
 function parseUsername(username, ctx, font, size, maxLength) {
-  username = username.replace(/\s/g, '') ? username : '?????'
+  username = capitalizeUsername(username.replace(/\s/g, '') ? username : '?????')
   let usernameChars = username.split('');
   let editableUsername = '';
   let finalUsername = '';
