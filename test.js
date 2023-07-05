@@ -27,7 +27,8 @@ client.on("messageCreate", async m => {
             level: 200,
             barColor: m.author.hexAccentColor || "#00ff00",
             levelColor: m.author.hexAccentColor || "#00ff00",
-            autoColorRank: true
+            autoColorRank: true,
+            brighterBar: true
         }
     });
     await m.reply(card);

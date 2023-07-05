@@ -451,7 +451,7 @@ async function genBadges(data, options) {
 }
 
 function genXpBar(options) {
-  const { currentXp, requiredXp, level, rank, barColor, levelColor, autoColorRank } = options.rankData;
+  const { currentXp, requiredXp, level, rank, barColor, levelColor, autoColorRank, brighterBar } = options.rankData;
 
   if (isNaN(currentXp) || isNaN(requiredXp) || isNaN(level)) {
     throw new Error(
@@ -505,7 +505,7 @@ function genXpBar(options) {
   ctx.fillText(`${lvlString}`, 674, 273);
 
   ctx.globalAlpha = alphaValue;
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = brighterBar ? '#444' : '#000';
   ctx.beginPath();
   ctx.roundRect(304, 187 - mY, 557, 36, [14]);
   ctx.fill();

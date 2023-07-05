@@ -10,6 +10,7 @@ interface RankOptions {
     // Options added in discord-arts-zhorde:
     levelColor?: string;
     autoColorRank?: boolean;
+    brighterBar?: boolean;
 }
 
 interface ProfileOptions {
