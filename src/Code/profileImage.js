@@ -236,6 +236,7 @@ async function genTextAndAvatar(data, options) {
     createdTimestamp,
     avatarURL,
     defaultAvatarURL,
+    discriminator
   } = data;
 
   const pixelLength = bot ? 470 : 555;
@@ -258,7 +259,7 @@ async function genTextAndAvatar(data, options) {
 
   const tag = options?.customTag
     ? isString(options.customTag, 'customTag')
-    : ``;
+    : (discriminator ? `#${discriminator}` : ``);
 
   ctx.font = `${newSize}px Helvetica Bold`;
   ctx.textAlign = 'left';
