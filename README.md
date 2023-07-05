@@ -19,8 +19,11 @@
 # 📦 Installation
 
 ```bash
-npm i discord-arts@latest
+npm i discord-arts-zhorde@latest
 ```
+
+This package, `discord-arts-zhorde`, is a custom fork of the original `discord-arts` by iAsure.\
+This package adds more customizability and options, to be used by the official discord bot of the ZombieHorde (zhorde) Minecraft server.
 
 # ✨ Features
 
@@ -152,10 +155,10 @@ interaction.followUp({ files: [attachment] });
 
 > # 💥 Issues / Feedback
 > 
-> ### Any problem or feedback, open an issue in our github repository [here](https://github.com/iAsure/discord-arts)
+> ### Original github repository that this was forked from [here](https://github.com/iAsure/discord-arts)
 
 
-> # ⭐ Support
+> # ⭐ Credits
 >
-> ### Send me a msg on discord! [iAsure#0001](https://discord.com/users/339919990947971105)
-
+> ### Created by [iAsure#0001](https://discord.com/users/339919990947971105)
+> ### Forked by Cannicide#2753

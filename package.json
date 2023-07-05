@@ -1,7 +1,7 @@
 {
-  "name": "discord-arts",
+  "name": "discord-arts-zhorde",
   "version": "0.4.1",
-  "description": "Customized cards with Discord style",
+  "description": "A fork of discord-arts with extra customization.",
   "main": "index.js",
   "types": "index.d.ts",
   "author": "iAsure",
@@ -11,8 +11,8 @@
     "url": "https://github.com/iAsure/discord-arts.git"
   },
   "dependencies": {
-    "@napi-rs/canvas": "^0.1.33",
-    "node-fetch": "^2.6.7"
+    "@napi-rs/canvas": "^0.1.41",
+    "node-fetch": "^2.6.12"
   },
   "keywords": [
     "discord",
@@ -20,6 +20,9 @@
     "jimp",
     "card",
     "arts",
-    "rank"
+    "rank",
+    "levels",
+    "xp",
+    "cannicide"
   ]
 }
