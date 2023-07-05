@@ -8,6 +8,7 @@ interface RankOptions {
     rank?: number;
     barColor?: string;
     levelColor?: string;
+    autoColorRank?: boolean;
 }
 
 interface ProfileOptions {

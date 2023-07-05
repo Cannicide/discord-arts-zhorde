@@ -273,7 +273,7 @@ async function genTextAndAvatar(data, options) {
     ctx.fillText(tag, 300, 215);
   }
 
-  ctx.font = '23px Helvetica';
+  ctx.font = '23px Helvetica'; // TODO: allow custom dates
   ctx.textAlign = 'center';
   ctx.fillStyle = '#dadada';
   ctx.fillText(createdDateString, 775, 273);
@@ -451,7 +451,7 @@ async function genBadges(data, options) {
 }
 
 function genXpBar(options) {
-  const { currentXp, requiredXp, level, rank, barColor, levelColor } = options.rankData;
+  const { currentXp, requiredXp, level, rank, barColor, levelColor, autoColorRank } = options.rankData;
 
   if (isNaN(currentXp) || isNaN(requiredXp) || isNaN(level)) {
     throw new Error(
@@ -481,12 +481,25 @@ function genXpBar(options) {
   ctx.fillStyle = '#dadada';
   ctx.fillText(`${currentXp} / ${requiredXp} XP`, 314, 273);
 
-  ctx.font = '23px Helvetica'; // TODO: allow gold, silver, bronze coloring based on rank
+  const rankColors = {
+    gold: "#F1C40F",
+    silver: "#a1a4c9",
+    bronze: "#AD8A56",
+    current: "#dadada"
+  };
+
+  if (autoColorRank) {
+    if (rankString == "Rank #1") rankColors.current = rankColors.gold;
+    else if (rankString == "Rank #2") rankColors.current = rankColors.silver;
+    else if (rankString == "Rank #3") rankColors.current = rankColors.bronze;
+  }
+
+  ctx.font = 'bold 23px Helvetica';
   ctx.textAlign = 'right';
-  ctx.fillStyle = '#dadada';
+  ctx.fillStyle = rankColors.current;
   ctx.fillText(`${rankString}`, 674 - ctx.measureText(`${lvlString}`).width - 10, 273);
 
-  ctx.font = '23px Helvetica';
+  ctx.font = 'bold 23px Helvetica';
   ctx.textAlign = 'right';
   ctx.fillStyle = levelColor ?? '#dadada';
   ctx.fillText(`${lvlString}`, 674, 273);
