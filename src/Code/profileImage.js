@@ -224,7 +224,6 @@ async function genBorder(options) {
 async function genTextAndAvatar(data, options) {
   const {
     username: rawUsername,
-    discriminator,
     bot,
     createdTimestamp,
     avatarURL,
@@ -251,7 +250,7 @@ async function genTextAndAvatar(data, options) {
 
   const tag = options?.customTag
     ? isString(options.customTag, 'customTag')
-    : `#${discriminator}`;
+    : ``;
 
   ctx.font = `${newSize}px Helvetica Bold`;
   ctx.textAlign = 'left';
