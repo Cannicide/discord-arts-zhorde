@@ -7,6 +7,7 @@ interface RankOptions {
     level: number;
     rank?: number;
     barColor?: string;
+    // Options added in discord-arts-zhorde:
     levelColor?: string;
     autoColorRank?: boolean;
 }
@@ -26,8 +27,10 @@ interface ProfileOptions {
     presenceStatus?: PresenceStatus;
     squareAvatar?: boolean;
     rankData?: RankOptions;
+    // Options added in discord-arts-zhorde:
     moreBackgroundBlur?: boolean;
     backgroundBrightness?: number;
+    customDate?: Date;
 }
 
 interface DiscordCard {

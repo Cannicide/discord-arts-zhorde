@@ -251,7 +251,7 @@ async function genTextAndAvatar(data, options) {
     pixelLength
   );
 
-  const createdDateString = new Date(+createdTimestamp).toLocaleDateString(
+  const createdDateString = (options?.customDate ?? new Date(+createdTimestamp)).toLocaleDateString(
     'en',
     { month: 'short', day: 'numeric', year: 'numeric' }
   );
@@ -273,7 +273,7 @@ async function genTextAndAvatar(data, options) {
     ctx.fillText(tag, 300, 215);
   }
 
-  ctx.font = '23px Helvetica'; // TODO: allow custom dates
+  ctx.font = '23px Helvetica';
   ctx.textAlign = 'center';
   ctx.fillStyle = '#dadada';
   ctx.fillText(createdDateString, 775, 273);
