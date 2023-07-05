@@ -1,6 +1,6 @@
 {
   "name": "discord-arts-zhorde",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fork of discord-arts with lots of extra customization.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iAsure/discord-arts.git"
+    "url": "https://github.com/Cannicide/discord-arts-zhorde.git"
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.41",
