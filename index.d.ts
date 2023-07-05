@@ -1,5 +1,5 @@
 type presenceStatus = 'online' | 'idle' | 'offline' | 'dnd' | 'invisible' | 'streaming' | 'phone'
-type borderAllign = 'horizontal' | 'vertical'
+type borderAlign = 'horizontal' | 'vertical'
 
 interface rankOptions {
     currentXp: number;
@@ -17,7 +17,7 @@ interface profileOptions {
     usernameColor?: string;
     tagColor?: string;
     borderColor?: string | string[];
-    borderAllign?: borderAllign;
+    borderAlign?: borderAlign;
     badgesFrame?: boolean;
     removeBadges?: boolean;
     removeBorder?: boolean;
@@ -26,6 +26,6 @@ interface profileOptions {
     rankData?: rankOptions;
 }
 
-declare module 'discord-arts' {
+declare module 'discord-arts-zhorde' {
     export function profileImage(user: string, options?: profileOptions): Promise<Buffer>;
 }

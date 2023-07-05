@@ -50,7 +50,7 @@ profileImage(userId, {
   usernameColor?: string, // Username HEX color
   tagColor?: string, // Tag HEX color
   borderColor?: string | string[], // Border HEX color, can be gradient if 2 colors are used
-  borderAllign?: string, // Gradient alignment if 2 colors are used
+  borderAlign?: string, // Gradient alignment if 2 colors are used
   presenceStatus?: string, // User status to be displayed below the avatar
   squareAvatar?: boolean, // Change avatar shape to a square
   rankData?: {

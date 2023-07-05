@@ -1,5 +1,5 @@
 const { createCanvas, loadImage, GlobalFonts } = require('@napi-rs/canvas');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch').default;
 const path = require('path');
 
 const {
@@ -199,8 +199,8 @@ async function genBorder(options) {
       `Discord Arts | Invalid borderColor length (${borderColors.length}) must be a maximum of 2 colors`
     );
 
-  const gradX = options.borderAllign == 'vertical' ? 0 : 885;
-  const gradY = options.borderAllign == 'vertical' ? 303 : 0;
+  const gradX = options.borderAlign == 'vertical' ? 0 : 885;
+  const gradY = options.borderAlign == 'vertical' ? 303 : 0;
 
   const grd = ctx.createLinearGradient(0, 0, gradX, gradY);
 
