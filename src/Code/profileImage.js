@@ -117,7 +117,7 @@ async function genBase(data, options) {
   ctx.fillRect(0, 0, 885, 303);
   ctx.fill();
 
-  ctx.filter = 'blur(3px)';
+  ctx.filter = (options?.moreBackgroundBlur ? 'blur(9px)' : 'blur(3px)') + (options?.backgroundBrightness ? ` brightness(${options.backgroundBrightness}%)` : '');
   ctx.drawImage(cardBackground, 0, cY, wX, wY);
 
   ctx.globalAlpha = 0.2;

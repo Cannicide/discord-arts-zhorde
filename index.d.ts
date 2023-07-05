@@ -25,6 +25,8 @@ interface ProfileOptions {
     presenceStatus?: PresenceStatus;
     squareAvatar?: boolean;
     rankData?: RankOptions;
+    moreBackgroundBlur?: boolean;
+    backgroundBrightness?: number;
 }
 
 interface DiscordCard {
