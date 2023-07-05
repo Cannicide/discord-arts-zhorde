@@ -10,7 +10,7 @@ const {
 } = require('../../src/Images/profileImage.json');
 
 const badgesOrder = require('../Utils/badgesOrder.json');
-const { parseUsername } = require('../Utils/imageUtils');
+const { parseUsername, abbreviateNumber } = require('../Utils/imageUtils');
 const {
   parseImg,
   parseHex,
@@ -471,15 +471,15 @@ function genXpBar(options) {
   ctx.fill();
   ctx.globalAlpha = 1;
 
-  const rankString = !isNaN(rank) ? `Rank #${isNumber(rank, 'rankData:rank')}` : '';
+  const rankString = !isNaN(rank) ? `POS #${abbreviateNumber(isNumber(rank, 'rankData:rank'))}` : '';
   const lvlString = !isNaN(level)
-    ? `Level ${isNumber(level, 'rankData:level')}`
+    ? `LVL ${abbreviateNumber(isNumber(level, 'rankData:level'))}`
     : '';
 
-  ctx.font = '23px Helvetica';
+  ctx.font = '21px Helvetica';
   ctx.textAlign = 'left';
   ctx.fillStyle = '#dadada';
-  ctx.fillText(`${currentXp} / ${requiredXp} XP`, 314, 273);
+  ctx.fillText(`${abbreviateNumber(currentXp)} / ${abbreviateNumber(requiredXp)} XP`, 314, 273);
 
   const rankColors = {
     gold: "#F1C40F",
@@ -489,17 +489,17 @@ function genXpBar(options) {
   };
 
   if (autoColorRank) {
-    if (rankString == "Rank #1") rankColors.current = rankColors.gold;
-    else if (rankString == "Rank #2") rankColors.current = rankColors.silver;
-    else if (rankString == "Rank #3") rankColors.current = rankColors.bronze;
+    if (rankString == "POS #1") rankColors.current = rankColors.gold;
+    else if (rankString == "POS #2") rankColors.current = rankColors.silver;
+    else if (rankString == "POS #3") rankColors.current = rankColors.bronze;
   }
 
-  ctx.font = 'bold 23px Helvetica';
+  ctx.font = 'bold 21px Helvetica';
   ctx.textAlign = 'right';
   ctx.fillStyle = rankColors.current;
   ctx.fillText(`${rankString}`, 674 - ctx.measureText(`${lvlString}`).width - 10, 273);
 
-  ctx.font = 'bold 23px Helvetica';
+  ctx.font = 'bold 21px Helvetica';
   ctx.textAlign = 'right';
   ctx.fillStyle = levelColor ?? '#dadada';
   ctx.fillText(`${lvlString}`, 674, 273);
